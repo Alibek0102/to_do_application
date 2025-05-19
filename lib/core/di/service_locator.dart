@@ -18,7 +18,7 @@ Future<void> setupServiceLocator() async {
   if (!Hive.isAdapterRegistered(0)) {
     Hive.registerAdapter(TaskModelAdapter());
   }
-  final tasksBox = await Hive.openBox<TaskModel>('test5');
+  final tasksBox = await Hive.openBox<TaskModel>('test4');
 
   getIt.registerSingleton(tasksBox);
 

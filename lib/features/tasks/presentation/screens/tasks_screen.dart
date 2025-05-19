@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_to_do_application/core/di/service_locator.dart';
 import 'package:flutter_to_do_application/features/tasks/presentation/blocs/filter_blocs/filter_bloc.dart';
 import 'package:flutter_to_do_application/features/tasks/presentation/blocs/tasks_blocs/tasks_bloc.dart';
 import 'package:flutter_to_do_application/features/tasks/presentation/common/enums/tasks_status_enum.dart';
@@ -9,12 +10,18 @@ import 'package:flutter_to_do_application/features/tasks/presentation/common/wid
 import 'package:flutter_to_do_application/features/tasks/presentation/common/widgets/task_item.dart';
 import 'package:flutter_to_do_application/shared/constants/app_colors.dart';
 import 'package:flutter_to_do_application/shared/extentions/int_sized_box.dart';
+import 'package:flutter_to_do_application/shared/routes/app_routes.gr.dart';
 import 'package:flutter_to_do_application/shared/themes/app_text_styles.dart';
 import 'package:lottie/lottie.dart';
 
 @RoutePage()
 class TasksScreen extends StatelessWidget {
-  const TasksScreen({super.key});
+  final _filterBloc = getIt.get<FilterBloc>();
+  final _tasksBloc = getIt.get<TasksBloc>();
+
+  TasksScreen({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -30,13 +37,13 @@ class TasksScreen extends StatelessWidget {
             BlocConsumer<FilterBloc, FilterState>(
               listener: (context, state) {
                 if (state.selectedFilter != TasksStatus.all) {
-                  context
-                      .read<TasksBloc>()
+                  _tasksBloc
                       .add(TasksEvent.start(status: state.selectedFilter));
                 } else {
-                  context.read<TasksBloc>().add(const TasksEvent.start());
+                  _tasksBloc.add(const TasksEvent.start());
                 }
               },
+              bloc: _filterBloc,
               builder: (context, state) {
                 return PinnedHeaderSliver(
                   child: ColoredBox(
@@ -57,7 +64,7 @@ class TasksScreen extends StatelessWidget {
                           },
                           onValueChanged: (status) {
                             if (status != null) {
-                              context.read<FilterBloc>().add(
+                              _filterBloc.add(
                                   FilterEvent.changeStatus(status: status));
                             }
                           }),
@@ -67,7 +74,7 @@ class TasksScreen extends StatelessWidget {
               },
             ),
             BlocBuilder<TasksBloc, TasksState>(
-              bloc: context.watch<TasksBloc>()..add(const TasksEvent.start()),
+              bloc: _tasksBloc..add(const TasksEvent.start()),
               builder: (context, state) {
                 return state.maybeWhen(loaded: (tasks) {
                   if (tasks.isEmpty) {
@@ -106,6 +113,10 @@ class TasksScreen extends StatelessWidget {
                           actions: [
                             CupertinoContextMenuAction(
                               onPressed: () {
+                                context.router.push(CreateTaskRoute(
+                                    taskIndex: index,
+                                    title: tasks[index].title,
+                                    text: tasks[index].text));
                                 Navigator.pop(context);
                               },
                               isDefaultAction: true,
@@ -114,8 +125,7 @@ class TasksScreen extends StatelessWidget {
                             ),
                             CupertinoContextMenuAction(
                               onPressed: () {
-                                context
-                                    .read<TasksBloc>()
+                                _tasksBloc
                                     .add(TasksEvent.remove(taskIndex: index));
                                 Navigator.pop(context);
                               },
@@ -127,9 +137,8 @@ class TasksScreen extends StatelessWidget {
                             return TaskItem(
                               task: tasks[index],
                               onChangeStatus: () {
-                                context.read<TasksBloc>().add(
-                                    TasksEvent.toogleTaskStatus(
-                                        taskIndex: index));
+                                _tasksBloc.add(TasksEvent.toogleTaskStatus(
+                                    taskIndex: index));
                               },
                             );
                           },

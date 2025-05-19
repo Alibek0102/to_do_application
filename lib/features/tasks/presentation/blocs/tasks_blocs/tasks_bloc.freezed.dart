@@ -22,6 +22,8 @@ mixin _$TasksEvent {
     required TResult Function(String? title, String? text) create,
     required TResult Function(int taskIndex) remove,
     required TResult Function(int taskIndex) toogleTaskStatus,
+    required TResult Function(String title, String text, int taskIndex)
+        updateTask,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -30,6 +32,7 @@ mixin _$TasksEvent {
     TResult? Function(String? title, String? text)? create,
     TResult? Function(int taskIndex)? remove,
     TResult? Function(int taskIndex)? toogleTaskStatus,
+    TResult? Function(String title, String text, int taskIndex)? updateTask,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -38,6 +41,7 @@ mixin _$TasksEvent {
     TResult Function(String? title, String? text)? create,
     TResult Function(int taskIndex)? remove,
     TResult Function(int taskIndex)? toogleTaskStatus,
+    TResult Function(String title, String text, int taskIndex)? updateTask,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -47,6 +51,7 @@ mixin _$TasksEvent {
     required TResult Function(_TaskCreateEvent value) create,
     required TResult Function(_TaskRemoveEvent value) remove,
     required TResult Function(_TaskToogleStatusEvent value) toogleTaskStatus,
+    required TResult Function(_TaskUpdateEvent value) updateTask,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -55,6 +60,7 @@ mixin _$TasksEvent {
     TResult? Function(_TaskCreateEvent value)? create,
     TResult? Function(_TaskRemoveEvent value)? remove,
     TResult? Function(_TaskToogleStatusEvent value)? toogleTaskStatus,
+    TResult? Function(_TaskUpdateEvent value)? updateTask,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -63,6 +69,7 @@ mixin _$TasksEvent {
     TResult Function(_TaskCreateEvent value)? create,
     TResult Function(_TaskRemoveEvent value)? remove,
     TResult Function(_TaskToogleStatusEvent value)? toogleTaskStatus,
+    TResult Function(_TaskUpdateEvent value)? updateTask,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -172,6 +179,8 @@ class _$TasksStartEventImpl
     required TResult Function(String? title, String? text) create,
     required TResult Function(int taskIndex) remove,
     required TResult Function(int taskIndex) toogleTaskStatus,
+    required TResult Function(String title, String text, int taskIndex)
+        updateTask,
   }) {
     return start(status);
   }
@@ -183,6 +192,7 @@ class _$TasksStartEventImpl
     TResult? Function(String? title, String? text)? create,
     TResult? Function(int taskIndex)? remove,
     TResult? Function(int taskIndex)? toogleTaskStatus,
+    TResult? Function(String title, String text, int taskIndex)? updateTask,
   }) {
     return start?.call(status);
   }
@@ -194,6 +204,7 @@ class _$TasksStartEventImpl
     TResult Function(String? title, String? text)? create,
     TResult Function(int taskIndex)? remove,
     TResult Function(int taskIndex)? toogleTaskStatus,
+    TResult Function(String title, String text, int taskIndex)? updateTask,
     required TResult orElse(),
   }) {
     if (start != null) {
@@ -209,6 +220,7 @@ class _$TasksStartEventImpl
     required TResult Function(_TaskCreateEvent value) create,
     required TResult Function(_TaskRemoveEvent value) remove,
     required TResult Function(_TaskToogleStatusEvent value) toogleTaskStatus,
+    required TResult Function(_TaskUpdateEvent value) updateTask,
   }) {
     return start(this);
   }
@@ -220,6 +232,7 @@ class _$TasksStartEventImpl
     TResult? Function(_TaskCreateEvent value)? create,
     TResult? Function(_TaskRemoveEvent value)? remove,
     TResult? Function(_TaskToogleStatusEvent value)? toogleTaskStatus,
+    TResult? Function(_TaskUpdateEvent value)? updateTask,
   }) {
     return start?.call(this);
   }
@@ -231,6 +244,7 @@ class _$TasksStartEventImpl
     TResult Function(_TaskCreateEvent value)? create,
     TResult Function(_TaskRemoveEvent value)? remove,
     TResult Function(_TaskToogleStatusEvent value)? toogleTaskStatus,
+    TResult Function(_TaskUpdateEvent value)? updateTask,
     required TResult orElse(),
   }) {
     if (start != null) {
@@ -345,6 +359,8 @@ class _$TaskCreateEventImpl
     required TResult Function(String? title, String? text) create,
     required TResult Function(int taskIndex) remove,
     required TResult Function(int taskIndex) toogleTaskStatus,
+    required TResult Function(String title, String text, int taskIndex)
+        updateTask,
   }) {
     return create(title, text);
   }
@@ -356,6 +372,7 @@ class _$TaskCreateEventImpl
     TResult? Function(String? title, String? text)? create,
     TResult? Function(int taskIndex)? remove,
     TResult? Function(int taskIndex)? toogleTaskStatus,
+    TResult? Function(String title, String text, int taskIndex)? updateTask,
   }) {
     return create?.call(title, text);
   }
@@ -367,6 +384,7 @@ class _$TaskCreateEventImpl
     TResult Function(String? title, String? text)? create,
     TResult Function(int taskIndex)? remove,
     TResult Function(int taskIndex)? toogleTaskStatus,
+    TResult Function(String title, String text, int taskIndex)? updateTask,
     required TResult orElse(),
   }) {
     if (create != null) {
@@ -382,6 +400,7 @@ class _$TaskCreateEventImpl
     required TResult Function(_TaskCreateEvent value) create,
     required TResult Function(_TaskRemoveEvent value) remove,
     required TResult Function(_TaskToogleStatusEvent value) toogleTaskStatus,
+    required TResult Function(_TaskUpdateEvent value) updateTask,
   }) {
     return create(this);
   }
@@ -393,6 +412,7 @@ class _$TaskCreateEventImpl
     TResult? Function(_TaskCreateEvent value)? create,
     TResult? Function(_TaskRemoveEvent value)? remove,
     TResult? Function(_TaskToogleStatusEvent value)? toogleTaskStatus,
+    TResult? Function(_TaskUpdateEvent value)? updateTask,
   }) {
     return create?.call(this);
   }
@@ -404,6 +424,7 @@ class _$TaskCreateEventImpl
     TResult Function(_TaskCreateEvent value)? create,
     TResult Function(_TaskRemoveEvent value)? remove,
     TResult Function(_TaskToogleStatusEvent value)? toogleTaskStatus,
+    TResult Function(_TaskUpdateEvent value)? updateTask,
     required TResult orElse(),
   }) {
     if (create != null) {
@@ -511,6 +532,8 @@ class _$TaskRemoveEventImpl
     required TResult Function(String? title, String? text) create,
     required TResult Function(int taskIndex) remove,
     required TResult Function(int taskIndex) toogleTaskStatus,
+    required TResult Function(String title, String text, int taskIndex)
+        updateTask,
   }) {
     return remove(taskIndex);
   }
@@ -522,6 +545,7 @@ class _$TaskRemoveEventImpl
     TResult? Function(String? title, String? text)? create,
     TResult? Function(int taskIndex)? remove,
     TResult? Function(int taskIndex)? toogleTaskStatus,
+    TResult? Function(String title, String text, int taskIndex)? updateTask,
   }) {
     return remove?.call(taskIndex);
   }
@@ -533,6 +557,7 @@ class _$TaskRemoveEventImpl
     TResult Function(String? title, String? text)? create,
     TResult Function(int taskIndex)? remove,
     TResult Function(int taskIndex)? toogleTaskStatus,
+    TResult Function(String title, String text, int taskIndex)? updateTask,
     required TResult orElse(),
   }) {
     if (remove != null) {
@@ -548,6 +573,7 @@ class _$TaskRemoveEventImpl
     required TResult Function(_TaskCreateEvent value) create,
     required TResult Function(_TaskRemoveEvent value) remove,
     required TResult Function(_TaskToogleStatusEvent value) toogleTaskStatus,
+    required TResult Function(_TaskUpdateEvent value) updateTask,
   }) {
     return remove(this);
   }
@@ -559,6 +585,7 @@ class _$TaskRemoveEventImpl
     TResult? Function(_TaskCreateEvent value)? create,
     TResult? Function(_TaskRemoveEvent value)? remove,
     TResult? Function(_TaskToogleStatusEvent value)? toogleTaskStatus,
+    TResult? Function(_TaskUpdateEvent value)? updateTask,
   }) {
     return remove?.call(this);
   }
@@ -570,6 +597,7 @@ class _$TaskRemoveEventImpl
     TResult Function(_TaskCreateEvent value)? create,
     TResult Function(_TaskRemoveEvent value)? remove,
     TResult Function(_TaskToogleStatusEvent value)? toogleTaskStatus,
+    TResult Function(_TaskUpdateEvent value)? updateTask,
     required TResult orElse(),
   }) {
     if (remove != null) {
@@ -677,6 +705,8 @@ class _$TaskToogleStatusEventImpl
     required TResult Function(String? title, String? text) create,
     required TResult Function(int taskIndex) remove,
     required TResult Function(int taskIndex) toogleTaskStatus,
+    required TResult Function(String title, String text, int taskIndex)
+        updateTask,
   }) {
     return toogleTaskStatus(taskIndex);
   }
@@ -688,6 +718,7 @@ class _$TaskToogleStatusEventImpl
     TResult? Function(String? title, String? text)? create,
     TResult? Function(int taskIndex)? remove,
     TResult? Function(int taskIndex)? toogleTaskStatus,
+    TResult? Function(String title, String text, int taskIndex)? updateTask,
   }) {
     return toogleTaskStatus?.call(taskIndex);
   }
@@ -699,6 +730,7 @@ class _$TaskToogleStatusEventImpl
     TResult Function(String? title, String? text)? create,
     TResult Function(int taskIndex)? remove,
     TResult Function(int taskIndex)? toogleTaskStatus,
+    TResult Function(String title, String text, int taskIndex)? updateTask,
     required TResult orElse(),
   }) {
     if (toogleTaskStatus != null) {
@@ -714,6 +746,7 @@ class _$TaskToogleStatusEventImpl
     required TResult Function(_TaskCreateEvent value) create,
     required TResult Function(_TaskRemoveEvent value) remove,
     required TResult Function(_TaskToogleStatusEvent value) toogleTaskStatus,
+    required TResult Function(_TaskUpdateEvent value) updateTask,
   }) {
     return toogleTaskStatus(this);
   }
@@ -725,6 +758,7 @@ class _$TaskToogleStatusEventImpl
     TResult? Function(_TaskCreateEvent value)? create,
     TResult? Function(_TaskRemoveEvent value)? remove,
     TResult? Function(_TaskToogleStatusEvent value)? toogleTaskStatus,
+    TResult? Function(_TaskUpdateEvent value)? updateTask,
   }) {
     return toogleTaskStatus?.call(this);
   }
@@ -736,6 +770,7 @@ class _$TaskToogleStatusEventImpl
     TResult Function(_TaskCreateEvent value)? create,
     TResult Function(_TaskRemoveEvent value)? remove,
     TResult Function(_TaskToogleStatusEvent value)? toogleTaskStatus,
+    TResult Function(_TaskUpdateEvent value)? updateTask,
     required TResult orElse(),
   }) {
     if (toogleTaskStatus != null) {
@@ -756,6 +791,201 @@ abstract class _TaskToogleStatusEvent implements TasksEvent {
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TaskToogleStatusEventImplCopyWith<_$TaskToogleStatusEventImpl>
       get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$TaskUpdateEventImplCopyWith<$Res> {
+  factory _$$TaskUpdateEventImplCopyWith(_$TaskUpdateEventImpl value,
+          $Res Function(_$TaskUpdateEventImpl) then) =
+      __$$TaskUpdateEventImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String title, String text, int taskIndex});
+}
+
+/// @nodoc
+class __$$TaskUpdateEventImplCopyWithImpl<$Res>
+    extends _$TasksEventCopyWithImpl<$Res, _$TaskUpdateEventImpl>
+    implements _$$TaskUpdateEventImplCopyWith<$Res> {
+  __$$TaskUpdateEventImplCopyWithImpl(
+      _$TaskUpdateEventImpl _value, $Res Function(_$TaskUpdateEventImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of TasksEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? title = null,
+    Object? text = null,
+    Object? taskIndex = null,
+  }) {
+    return _then(_$TaskUpdateEventImpl(
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      text: null == text
+          ? _value.text
+          : text // ignore: cast_nullable_to_non_nullable
+              as String,
+      taskIndex: null == taskIndex
+          ? _value.taskIndex
+          : taskIndex // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$TaskUpdateEventImpl
+    with DiagnosticableTreeMixin
+    implements _TaskUpdateEvent {
+  const _$TaskUpdateEventImpl(
+      {required this.title, required this.text, required this.taskIndex});
+
+  @override
+  final String title;
+  @override
+  final String text;
+  @override
+  final int taskIndex;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'TasksEvent.updateTask(title: $title, text: $text, taskIndex: $taskIndex)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'TasksEvent.updateTask'))
+      ..add(DiagnosticsProperty('title', title))
+      ..add(DiagnosticsProperty('text', text))
+      ..add(DiagnosticsProperty('taskIndex', taskIndex));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$TaskUpdateEventImpl &&
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.text, text) || other.text == text) &&
+            (identical(other.taskIndex, taskIndex) ||
+                other.taskIndex == taskIndex));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, title, text, taskIndex);
+
+  /// Create a copy of TasksEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$TaskUpdateEventImplCopyWith<_$TaskUpdateEventImpl> get copyWith =>
+      __$$TaskUpdateEventImplCopyWithImpl<_$TaskUpdateEventImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(TasksStatus? status) start,
+    required TResult Function(String? title, String? text) create,
+    required TResult Function(int taskIndex) remove,
+    required TResult Function(int taskIndex) toogleTaskStatus,
+    required TResult Function(String title, String text, int taskIndex)
+        updateTask,
+  }) {
+    return updateTask(title, text, taskIndex);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(TasksStatus? status)? start,
+    TResult? Function(String? title, String? text)? create,
+    TResult? Function(int taskIndex)? remove,
+    TResult? Function(int taskIndex)? toogleTaskStatus,
+    TResult? Function(String title, String text, int taskIndex)? updateTask,
+  }) {
+    return updateTask?.call(title, text, taskIndex);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(TasksStatus? status)? start,
+    TResult Function(String? title, String? text)? create,
+    TResult Function(int taskIndex)? remove,
+    TResult Function(int taskIndex)? toogleTaskStatus,
+    TResult Function(String title, String text, int taskIndex)? updateTask,
+    required TResult orElse(),
+  }) {
+    if (updateTask != null) {
+      return updateTask(title, text, taskIndex);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_TasksStartEvent value) start,
+    required TResult Function(_TaskCreateEvent value) create,
+    required TResult Function(_TaskRemoveEvent value) remove,
+    required TResult Function(_TaskToogleStatusEvent value) toogleTaskStatus,
+    required TResult Function(_TaskUpdateEvent value) updateTask,
+  }) {
+    return updateTask(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_TasksStartEvent value)? start,
+    TResult? Function(_TaskCreateEvent value)? create,
+    TResult? Function(_TaskRemoveEvent value)? remove,
+    TResult? Function(_TaskToogleStatusEvent value)? toogleTaskStatus,
+    TResult? Function(_TaskUpdateEvent value)? updateTask,
+  }) {
+    return updateTask?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_TasksStartEvent value)? start,
+    TResult Function(_TaskCreateEvent value)? create,
+    TResult Function(_TaskRemoveEvent value)? remove,
+    TResult Function(_TaskToogleStatusEvent value)? toogleTaskStatus,
+    TResult Function(_TaskUpdateEvent value)? updateTask,
+    required TResult orElse(),
+  }) {
+    if (updateTask != null) {
+      return updateTask(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _TaskUpdateEvent implements TasksEvent {
+  const factory _TaskUpdateEvent(
+      {required final String title,
+      required final String text,
+      required final int taskIndex}) = _$TaskUpdateEventImpl;
+
+  String get title;
+  String get text;
+  int get taskIndex;
+
+  /// Create a copy of TasksEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$TaskUpdateEventImplCopyWith<_$TaskUpdateEventImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc

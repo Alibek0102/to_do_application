@@ -8,4 +8,8 @@ class TasksEvent with _$TasksEvent {
   const factory TasksEvent.remove({required int taskIndex}) = _TaskRemoveEvent;
   const factory TasksEvent.toogleTaskStatus({required int taskIndex}) =
       _TaskToogleStatusEvent;
+  const factory TasksEvent.updateTask(
+      {required String title,
+      required String text,
+      required int taskIndex}) = _TaskUpdateEvent;
 }

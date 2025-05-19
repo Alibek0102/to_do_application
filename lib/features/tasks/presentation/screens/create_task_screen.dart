@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_to_do_application/core/di/service_locator.dart';
 import 'package:flutter_to_do_application/features/tasks/presentation/blocs/tasks_blocs/tasks_bloc.dart';
 import 'package:flutter_to_do_application/features/tasks/presentation/common/widgets/custom_cupertino_simple_nav_bar.dart';
 import 'package:flutter_to_do_application/shared/constants/app_colors.dart';
@@ -8,11 +8,30 @@ import 'package:flutter_to_do_application/shared/extentions/int_sized_box.dart';
 import 'package:flutter_to_do_application/shared/themes/app_text_styles.dart';
 
 @RoutePage()
-class CreateTaskScreen extends StatelessWidget {
-  CreateTaskScreen({super.key});
+class CreateTaskScreen extends StatefulWidget {
+  final int? taskIndex;
+  final String? title;
+  final String? text;
 
-  final TextEditingController titleController = TextEditingController();
-  final TextEditingController textController = TextEditingController();
+  const CreateTaskScreen({super.key, this.taskIndex, this.title, this.text});
+
+  @override
+  State<CreateTaskScreen> createState() => _CreateTaskScreenState();
+}
+
+class _CreateTaskScreenState extends State<CreateTaskScreen> {
+  late TextEditingController titleController;
+  late TextEditingController textController;
+
+  @override
+  void initState() {
+    super.initState();
+
+    titleController = TextEditingController(text: widget.title);
+    textController = TextEditingController(text: widget.text);
+  }
+
+  final _tasksBloc = getIt.get<TasksBloc>();
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +53,7 @@ class CreateTaskScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  25.h,
+                  35.h,
                   const Text('Название задачи',
                       style: AppTextStyles.boldCaption),
                   5.h,
@@ -71,8 +90,15 @@ class CreateTaskScreen extends StatelessWidget {
               width: double.infinity,
               child: CupertinoButton(
                 onPressed: () {
-                  context.read<TasksBloc>().add(TasksEvent.create(
-                      title: titleController.text, text: textController.text));
+                  widget.taskIndex != null
+                      ? _tasksBloc.add(TasksEvent.updateTask(
+                          title: titleController.text,
+                          text: textController.text,
+                          taskIndex: widget.taskIndex!))
+                      : _tasksBloc.add(TasksEvent.create(
+                          title: titleController.text,
+                          text: textController.text));
+
                   context.router.back();
                 },
                 color: CupertinoTheme.of(context).primaryColor,

@@ -30,6 +30,7 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
     on<_TaskCreateEvent>(_onCreateTask);
     on<_TaskRemoveEvent>(_onRemoveTask);
     on<_TaskToogleStatusEvent>(_onChangeTaskStatus);
+    on<_TaskUpdateEvent>(_onUpdateTask);
   }
 
   void _onGetTasks(_TasksStartEvent event, emit) async {
@@ -68,6 +69,26 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
       final taskToUpdate = currentTasks[taskIndex];
       final updatedTask =
           taskToUpdate.copyWith(isCompleted: !taskToUpdate.isCompleted);
+
+      final newTasks = currentTasks.map((TaskEntity task) {
+        if (task.id == taskToUpdate.id) {
+          return updatedTask;
+        }
+        return task;
+      }).toList();
+
+      await updateTask.perform(taskIndex, updatedTask);
+      emit(TasksState.loaded(tasks: newTasks));
+    }
+  }
+
+  void _onUpdateTask(_TaskUpdateEvent event, emit) async {
+    if (state is _TaskLoadedState) {
+      final currentTasks = (state as _TaskLoadedState).tasks;
+      final taskIndex = event.taskIndex;
+      final taskToUpdate = currentTasks[taskIndex];
+      final updatedTask =
+          taskToUpdate.copyWith(title: event.title, text: event.text);
 
       final newTasks = currentTasks.map((TaskEntity task) {
         if (task.id == taskToUpdate.id) {
