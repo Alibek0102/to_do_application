@@ -33,9 +33,6 @@ class TaskLocalDatasource {
       orElse: () => null,
     );
 
-    print('key');
-    print(keyToDelete);
-
     if (keyToDelete != null) {
       taskBox.delete(keyToDelete);
     }
