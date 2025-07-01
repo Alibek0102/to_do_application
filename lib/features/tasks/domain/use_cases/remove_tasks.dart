@@ -5,7 +5,7 @@ class RemoveTasks {
 
   const RemoveTasks(this.taskRepository);
 
-  Future<void> perform({required int taskIndex}) {
-    return taskRepository.removeTask(taskIndex);
+  Future<void> perform({required String taskId}) {
+    return taskRepository.removeTask(taskId);
   }
 }

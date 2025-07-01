@@ -125,8 +125,8 @@ class TasksScreen extends StatelessWidget {
                             ),
                             CupertinoContextMenuAction(
                               onPressed: () {
-                                _tasksBloc
-                                    .add(TasksEvent.remove(taskIndex: index));
+                                _tasksBloc.add(
+                                    TasksEvent.remove(taskId: tasks[index].id));
                                 Navigator.pop(context);
                               },
                               trailingIcon: CupertinoIcons.delete,

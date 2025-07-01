@@ -20,7 +20,7 @@ mixin _$TasksEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(TasksStatus? status) start,
     required TResult Function(String? title, String? text) create,
-    required TResult Function(int taskIndex) remove,
+    required TResult Function(String taskId) remove,
     required TResult Function(int taskIndex) toogleTaskStatus,
     required TResult Function(String title, String text, int taskIndex)
         updateTask,
@@ -30,7 +30,7 @@ mixin _$TasksEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(TasksStatus? status)? start,
     TResult? Function(String? title, String? text)? create,
-    TResult? Function(int taskIndex)? remove,
+    TResult? Function(String taskId)? remove,
     TResult? Function(int taskIndex)? toogleTaskStatus,
     TResult? Function(String title, String text, int taskIndex)? updateTask,
   }) =>
@@ -39,7 +39,7 @@ mixin _$TasksEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(TasksStatus? status)? start,
     TResult Function(String? title, String? text)? create,
-    TResult Function(int taskIndex)? remove,
+    TResult Function(String taskId)? remove,
     TResult Function(int taskIndex)? toogleTaskStatus,
     TResult Function(String title, String text, int taskIndex)? updateTask,
     required TResult orElse(),
@@ -177,7 +177,7 @@ class _$TasksStartEventImpl
   TResult when<TResult extends Object?>({
     required TResult Function(TasksStatus? status) start,
     required TResult Function(String? title, String? text) create,
-    required TResult Function(int taskIndex) remove,
+    required TResult Function(String taskId) remove,
     required TResult Function(int taskIndex) toogleTaskStatus,
     required TResult Function(String title, String text, int taskIndex)
         updateTask,
@@ -190,7 +190,7 @@ class _$TasksStartEventImpl
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(TasksStatus? status)? start,
     TResult? Function(String? title, String? text)? create,
-    TResult? Function(int taskIndex)? remove,
+    TResult? Function(String taskId)? remove,
     TResult? Function(int taskIndex)? toogleTaskStatus,
     TResult? Function(String title, String text, int taskIndex)? updateTask,
   }) {
@@ -202,7 +202,7 @@ class _$TasksStartEventImpl
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(TasksStatus? status)? start,
     TResult Function(String? title, String? text)? create,
-    TResult Function(int taskIndex)? remove,
+    TResult Function(String taskId)? remove,
     TResult Function(int taskIndex)? toogleTaskStatus,
     TResult Function(String title, String text, int taskIndex)? updateTask,
     required TResult orElse(),
@@ -357,7 +357,7 @@ class _$TaskCreateEventImpl
   TResult when<TResult extends Object?>({
     required TResult Function(TasksStatus? status) start,
     required TResult Function(String? title, String? text) create,
-    required TResult Function(int taskIndex) remove,
+    required TResult Function(String taskId) remove,
     required TResult Function(int taskIndex) toogleTaskStatus,
     required TResult Function(String title, String text, int taskIndex)
         updateTask,
@@ -370,7 +370,7 @@ class _$TaskCreateEventImpl
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(TasksStatus? status)? start,
     TResult? Function(String? title, String? text)? create,
-    TResult? Function(int taskIndex)? remove,
+    TResult? Function(String taskId)? remove,
     TResult? Function(int taskIndex)? toogleTaskStatus,
     TResult? Function(String title, String text, int taskIndex)? updateTask,
   }) {
@@ -382,7 +382,7 @@ class _$TaskCreateEventImpl
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(TasksStatus? status)? start,
     TResult Function(String? title, String? text)? create,
-    TResult Function(int taskIndex)? remove,
+    TResult Function(String taskId)? remove,
     TResult Function(int taskIndex)? toogleTaskStatus,
     TResult Function(String title, String text, int taskIndex)? updateTask,
     required TResult orElse(),
@@ -454,7 +454,7 @@ abstract class _$$TaskRemoveEventImplCopyWith<$Res> {
           $Res Function(_$TaskRemoveEventImpl) then) =
       __$$TaskRemoveEventImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({int taskIndex});
+  $Res call({String taskId});
 }
 
 /// @nodoc
@@ -470,13 +470,13 @@ class __$$TaskRemoveEventImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? taskIndex = null,
+    Object? taskId = null,
   }) {
     return _then(_$TaskRemoveEventImpl(
-      taskIndex: null == taskIndex
-          ? _value.taskIndex
-          : taskIndex // ignore: cast_nullable_to_non_nullable
-              as int,
+      taskId: null == taskId
+          ? _value.taskId
+          : taskId // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -486,14 +486,14 @@ class __$$TaskRemoveEventImplCopyWithImpl<$Res>
 class _$TaskRemoveEventImpl
     with DiagnosticableTreeMixin
     implements _TaskRemoveEvent {
-  const _$TaskRemoveEventImpl({required this.taskIndex});
+  const _$TaskRemoveEventImpl({required this.taskId});
 
   @override
-  final int taskIndex;
+  final String taskId;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'TasksEvent.remove(taskIndex: $taskIndex)';
+    return 'TasksEvent.remove(taskId: $taskId)';
   }
 
   @override
@@ -501,7 +501,7 @@ class _$TaskRemoveEventImpl
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'TasksEvent.remove'))
-      ..add(DiagnosticsProperty('taskIndex', taskIndex));
+      ..add(DiagnosticsProperty('taskId', taskId));
   }
 
   @override
@@ -509,12 +509,11 @@ class _$TaskRemoveEventImpl
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TaskRemoveEventImpl &&
-            (identical(other.taskIndex, taskIndex) ||
-                other.taskIndex == taskIndex));
+            (identical(other.taskId, taskId) || other.taskId == taskId));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, taskIndex);
+  int get hashCode => Object.hash(runtimeType, taskId);
 
   /// Create a copy of TasksEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -530,12 +529,12 @@ class _$TaskRemoveEventImpl
   TResult when<TResult extends Object?>({
     required TResult Function(TasksStatus? status) start,
     required TResult Function(String? title, String? text) create,
-    required TResult Function(int taskIndex) remove,
+    required TResult Function(String taskId) remove,
     required TResult Function(int taskIndex) toogleTaskStatus,
     required TResult Function(String title, String text, int taskIndex)
         updateTask,
   }) {
-    return remove(taskIndex);
+    return remove(taskId);
   }
 
   @override
@@ -543,11 +542,11 @@ class _$TaskRemoveEventImpl
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(TasksStatus? status)? start,
     TResult? Function(String? title, String? text)? create,
-    TResult? Function(int taskIndex)? remove,
+    TResult? Function(String taskId)? remove,
     TResult? Function(int taskIndex)? toogleTaskStatus,
     TResult? Function(String title, String text, int taskIndex)? updateTask,
   }) {
-    return remove?.call(taskIndex);
+    return remove?.call(taskId);
   }
 
   @override
@@ -555,13 +554,13 @@ class _$TaskRemoveEventImpl
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(TasksStatus? status)? start,
     TResult Function(String? title, String? text)? create,
-    TResult Function(int taskIndex)? remove,
+    TResult Function(String taskId)? remove,
     TResult Function(int taskIndex)? toogleTaskStatus,
     TResult Function(String title, String text, int taskIndex)? updateTask,
     required TResult orElse(),
   }) {
     if (remove != null) {
-      return remove(taskIndex);
+      return remove(taskId);
     }
     return orElse();
   }
@@ -608,10 +607,10 @@ class _$TaskRemoveEventImpl
 }
 
 abstract class _TaskRemoveEvent implements TasksEvent {
-  const factory _TaskRemoveEvent({required final int taskIndex}) =
+  const factory _TaskRemoveEvent({required final String taskId}) =
       _$TaskRemoveEventImpl;
 
-  int get taskIndex;
+  String get taskId;
 
   /// Create a copy of TasksEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -703,7 +702,7 @@ class _$TaskToogleStatusEventImpl
   TResult when<TResult extends Object?>({
     required TResult Function(TasksStatus? status) start,
     required TResult Function(String? title, String? text) create,
-    required TResult Function(int taskIndex) remove,
+    required TResult Function(String taskId) remove,
     required TResult Function(int taskIndex) toogleTaskStatus,
     required TResult Function(String title, String text, int taskIndex)
         updateTask,
@@ -716,7 +715,7 @@ class _$TaskToogleStatusEventImpl
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(TasksStatus? status)? start,
     TResult? Function(String? title, String? text)? create,
-    TResult? Function(int taskIndex)? remove,
+    TResult? Function(String taskId)? remove,
     TResult? Function(int taskIndex)? toogleTaskStatus,
     TResult? Function(String title, String text, int taskIndex)? updateTask,
   }) {
@@ -728,7 +727,7 @@ class _$TaskToogleStatusEventImpl
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(TasksStatus? status)? start,
     TResult Function(String? title, String? text)? create,
-    TResult Function(int taskIndex)? remove,
+    TResult Function(String taskId)? remove,
     TResult Function(int taskIndex)? toogleTaskStatus,
     TResult Function(String title, String text, int taskIndex)? updateTask,
     required TResult orElse(),
@@ -894,7 +893,7 @@ class _$TaskUpdateEventImpl
   TResult when<TResult extends Object?>({
     required TResult Function(TasksStatus? status) start,
     required TResult Function(String? title, String? text) create,
-    required TResult Function(int taskIndex) remove,
+    required TResult Function(String taskId) remove,
     required TResult Function(int taskIndex) toogleTaskStatus,
     required TResult Function(String title, String text, int taskIndex)
         updateTask,
@@ -907,7 +906,7 @@ class _$TaskUpdateEventImpl
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(TasksStatus? status)? start,
     TResult? Function(String? title, String? text)? create,
-    TResult? Function(int taskIndex)? remove,
+    TResult? Function(String taskId)? remove,
     TResult? Function(int taskIndex)? toogleTaskStatus,
     TResult? Function(String title, String text, int taskIndex)? updateTask,
   }) {
@@ -919,7 +918,7 @@ class _$TaskUpdateEventImpl
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(TasksStatus? status)? start,
     TResult Function(String? title, String? text)? create,
-    TResult Function(int taskIndex)? remove,
+    TResult Function(String taskId)? remove,
     TResult Function(int taskIndex)? toogleTaskStatus,
     TResult Function(String title, String text, int taskIndex)? updateTask,
     required TResult orElse(),

@@ -27,8 +27,18 @@ class TaskLocalDatasource {
     taskBox.add(task);
   }
 
-  void removeTask(int taskIndex) {
-    taskBox.deleteAt(taskIndex);
+  void removeTask(String taskId) {
+    final keyToDelete = taskBox.keys.firstWhere(
+      (key) => taskBox.get(key)?.id == taskId,
+      orElse: () => null,
+    );
+
+    print('key');
+    print(keyToDelete);
+
+    if (keyToDelete != null) {
+      taskBox.delete(keyToDelete);
+    }
   }
 
   void updateTask(int taskIndex, TaskModel task) {

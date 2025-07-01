@@ -16,8 +16,8 @@ class TaskRepositoryImpl extends TaskRepository {
   }
 
   @override
-  Future<void> removeTask(int taskIndex) async {
-    taskLocalDS.removeTask(taskIndex);
+  Future<void> removeTask(String taskId) async {
+    taskLocalDS.removeTask(taskId);
   }
 
   @override

@@ -51,13 +51,11 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
   void _onRemoveTask(_TaskRemoveEvent event, emit) async {
     if (state is _TaskLoadedState) {
       final currentTasks = (state as _TaskLoadedState).tasks;
-      final taskIndex = event.taskIndex;
-      final taskToDelete = currentTasks[taskIndex];
-      final newTasks = currentTasks
-          .where((TaskEntity task) => task.id != taskToDelete.id)
-          .toList();
+      final taskId = event.taskId;
+      final newTasks =
+          currentTasks.where((TaskEntity task) => task.id != taskId).toList();
 
-      await removeTask.perform(taskIndex: event.taskIndex);
+      await removeTask.perform(taskId: event.taskId);
       emit(TasksState.loaded(tasks: newTasks));
     }
   }

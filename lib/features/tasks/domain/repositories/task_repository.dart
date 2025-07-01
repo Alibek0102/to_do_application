@@ -4,6 +4,6 @@ import 'package:flutter_to_do_application/features/tasks/presentation/common/enu
 abstract class TaskRepository {
   Future<List<TaskEntity>> getTasks(TasksStatus? taskStatus);
   Future<void> addTask(TaskEntity task);
-  Future<void> removeTask(int taskIndex);
+  Future<void> removeTask(String taskId);
   Future<void> updateTask(int taskIndex, TaskEntity task);
 }
